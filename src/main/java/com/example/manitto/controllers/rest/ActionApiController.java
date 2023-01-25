@@ -1,7 +1,10 @@
 package com.example.manitto.controllers.rest;
 
+import com.example.manitto.common.LoginSessionManager;
 import com.example.manitto.services.ActionService;
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -13,5 +16,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActionApiController {
     private final ActionService actionService;
 
+    private final LoginSessionManager loginSessionManager;
 
+    
+    @PostMapping("/pmreg")
+    public void registeraction() {
+    		actionService.createAction();
+   }
 }

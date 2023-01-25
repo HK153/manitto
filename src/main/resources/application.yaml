@@ -7,14 +7,22 @@ spring:
     url: jdbc:mariadb://localhost:3306/test?serverTimezone=UTC&characterEncoding=UTF-8
     driver-class-name: org.mariadb.jdbc.Driver
     username: root
-    password: '0000'
+    password: 1234
   sql:
     init:
       schema-locations: classpath:sql/schema.sql
       data-locations: classpath:sql/data.sql
+  devtools:
+    livereload:
+      enabled: true
+      # thymeleaf cache 비활성화
+  thymeleaf:
+    cache: false
+    
 mybatis:
   #  configuration:
   #    map-underscore-to-camel-case: true
   #  type-aliases-package: com.example.manitto.dtos
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mappers/**/*.xml
+
