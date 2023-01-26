@@ -23,7 +23,7 @@ public class CommentApiController {
     
 
     @PostMapping("/create")
-    public void createComment(Comment.CreateDto createDto, HttpRequest request)  {
+    public void createComment(Comment.CreateDto createDto)  {
     		commentService.createComment(createDto);
     }
 }

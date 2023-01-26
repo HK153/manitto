@@ -7,6 +7,9 @@ import com.example.manitto.dtos.UserMatch;
 import com.example.manitto.repositories.UserMatchRepository;
 import com.example.manitto.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
+
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
 /**
@@ -18,13 +21,18 @@ import org.springframework.stereotype.Service;
 public class UserMatchService {
     private final UserMatchRepository userMatchRepository;
     private final UserRepository userRepository;
-
     private final LoginSessionManager loginSessionManager;
+    
+    
     public User.InfoDto getReceiverName() {
         if (!loginSessionManager.haveLoginSession()) throw new RuntimeException();
         UserMatch.ExtendedDto receiverUserMatch = userMatchRepository.getExtendedUserMatchList(Constants.STATUS_ACTIVE)
                 .stream().filter(userMatch -> userMatch.getRole().equals(Constants.ROLE_RECEIVER))
                 .findFirst().get();
         return userRepository.getUserById(receiverUserMatch.getUserId()).get().toInfoDto();
+    }
+    
+    public Optional<UserMatch.ExtendedDto> getUserMatchExtendedByUserIdAndMatchId (long userId, long matchId){
+    		return userMatchRepository.getUserMatchExtendedByUserIdAndMatchId(userId, matchId);
     }
 }
