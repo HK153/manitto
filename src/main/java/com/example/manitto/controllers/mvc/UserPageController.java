@@ -65,4 +65,9 @@ public class UserPageController {
     public String pmrlookupPage() {
     		return "admin/pmrreg";
     }
+    
+    @GetMapping("/logout")
+    public String logoutPage() {
+    		return "frame/logout";
+    }
 }

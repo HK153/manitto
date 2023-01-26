@@ -8,7 +8,11 @@
 <body>
 <jsp:include page="frame/header.jsp" />
 main page
-<button id=""></button>
+<h3> 현재 진행중인 마니또</h3>
+
+<button>match1</button><br>
+<button>match2</button><br>
+
 
 </body>
 </html>
