@@ -1,17 +1,20 @@
 package com.example.manitto.controllers.rest;
 
 import com.example.manitto.common.LoginSessionManager;
+import com.example.manitto.dtos.Action;
 import com.example.manitto.services.ActionService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
  * Created by jonghyeon on 2023/01/25,
  * Package : com.example.manitto.controllers.rest
  */
-@RestController("/api/action")
+@RestController
+@RequestMapping("/api/action")
 @RequiredArgsConstructor
 public class ActionApiController {
     private final ActionService actionService;
@@ -19,8 +22,8 @@ public class ActionApiController {
     private final LoginSessionManager loginSessionManager;
 
     
-    @PostMapping("/pmreg")
-    public void registeraction() {
-    		actionService.createAction();
+    @PostMapping("/pmrreg")
+    public void registeraction(Action.CreateDto dto) {
+    		actionService.createAction(dto);
    }
 }

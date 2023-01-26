@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
 /**
  * Created by jonghyeon on 2023/01/21,
@@ -60,8 +61,8 @@ public class UserPageController {
     		return "currentmani";
     }
     
-    @GetMapping("/pmrlookup")
+    @GetMapping("/pmrreg")
     public String pmrlookupPage() {
-    		return "pmrlookup";
+    		return "admin/pmrreg";
     }
 }
