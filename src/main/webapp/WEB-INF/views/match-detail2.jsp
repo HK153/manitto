@@ -18,10 +18,10 @@
     <c:choose>
     <c:when test="${info.role eq 'none'}">아무역할이 없어요   </c:when>
     <c:when test="${info.role eq 'receiver'}">
-    	`	<c:choose>
+    <%-- 	`	<c:choose>
 	    		<c:when test="${empty userMatch }">아무역할이 없어요</c:when>
 	    		<c:when test="${not empty userMatch }"><button>누가 나의 마니또?</button></c:when>
-    		</c:choose>
+    		</c:choose> --%>
    </c:when>
     <c:when test="${info.role eq 'contributor'}">  나의 마니또는<span id="receiver"></span> </c:when>
     </c:choose>
@@ -39,17 +39,17 @@
 	<div>
 	리스트
 	</div>
-    <form id="commnet-form">
-   
+    <form id="comment-form">
+    <c:set var="info" value="${ sessionScope.info }"/>
     <textarea rows="3" cols="50" id="content" name="content"></textarea>
-    <input type="hidden" id="userId" name="userId" value="${userId }">
-    <!-- request.setAttribute("matchId","matchId")  match 테이블 id값-->
+    
+    <input type="hidden" id="userId" name="userId" value="${info.id }">
     <input type="hidden" id="matchId" name="matchId" value="${match2 }">
-  	 ${info.randomName }
     <input type="hidden" id="writer" name="writer" value="${info.randomName }">
+  	 ${info.randomName }
     
     <br>
-    <input type="submit" id="comment-btn" value="등록"  class="btn">
+    <button id="comment-btn" class="btn">등록</button>
     </form>
  	</div>
  	

@@ -1,5 +1,7 @@
 package com.example.manitto.services;
 
+import com.example.manitto.dtos.Action;
+import com.example.manitto.dtos.Action.CreateDto;
 import com.example.manitto.repositories.ActionRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -12,4 +14,8 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class ActionService {
     private final ActionRepository actionRepository;
+    
+    public void createAction(Action.CreateDto dto) {
+    		actionRepository.createAction(dto);
+    }
 }

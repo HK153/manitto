@@ -4,16 +4,17 @@ $(() => {
         $.ajax({
             url: "/api/comment/create",
             method: "POST",
-            data: $("commnet-form").serialize(),
+            data: $("#comment-form").serialize(),
             dataType: "text",
             contentType: 'application/x-www-form-urlencoded'
         })
             .done(() => {
-                alert("등록 완료")
-                location.replace("")
+                alert("등록 완료"+ $("#comment-form").serialize())
+                /*location.replace("")*/
+                $("#commentlist").html()
             })
             .fail((xhr, status, error) => {
-                alert("등록 실패")
+                alert("등록 실패" + $("#comment-form").serialize())
                 console.log(error)
             })
     })

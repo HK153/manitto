@@ -1,8 +1,10 @@
 package com.example.manitto.controllers.rest;
 
+import com.example.manitto.dtos.Action;
 import com.example.manitto.services.ActionService;
 import lombok.RequiredArgsConstructor;
 
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -16,5 +18,8 @@ import org.springframework.web.bind.annotation.RestController;
 public class ActionApiController {
     private final ActionService actionService;
 
-
+    @PostMapping("/pmrreg")
+    public void registeraction(Action.CreateDto dto) {
+    		actionService.createAction(dto);
+    }
 }

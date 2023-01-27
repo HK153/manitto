@@ -14,6 +14,7 @@ import lombok.RequiredArgsConstructor;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,11 +78,10 @@ public class UserPageController {
 			 * long id = info.getId(); userMatchService. String matchId = "";
 			 * request.setAttribute("matchId",matchId);
 			 */
+    		
     		mv.addObject("userId", info.getId());
     		mv.addObject("match1",match1);
     		//mv.addObject("userMatch",userMatch);
-    		
-    		
     		mv.setViewName("match-detail1");
         return mv;
     }
@@ -91,8 +91,8 @@ public class UserPageController {
 	    	User.InfoDto info = (InfoDto) session.getAttribute("info");
 	    	List<Match> dto = matchService.getMatchListActive();
 	    	String match2 = dto.get(1).getId().toString();
-	    ExtendedDto userMatch = 
-	    			userMatchService.getUserMatchExtendedByUserIdAndMatchId(info.getId(), Long.parseLong(match2)).get();
+//	    ExtendedDto userMatch = 
+//	    			userMatchService.getUserMatchExtendedByUserIdAndMatchId(info.getId(), Long.parseLong(match2)).get();
 
 	    	/*
 	    	 * long id = info.getId(); userMatchService. String matchId = "";
@@ -106,8 +106,13 @@ public class UserPageController {
     }
     
     @GetMapping("/pmrreg")
-    public String pmrregPage() {
-        return "pmrreg";
+	    public ModelAndView pmrregPage() {
+	    //waiting id 값
+	    List<Match> matchList = matchService.getMatchListWaiting();
+	    ModelAndView mv = new ModelAndView();
+	    mv.addObject("matchList", matchList);
+	    mv.setViewName("admin/pmrreg");
+	    return mv;
     }
     
     

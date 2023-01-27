@@ -1,3 +1,4 @@
+<%@page import="com.example.manitto.dtos.User"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@include file="frame/common.jsp" %>
@@ -34,20 +35,27 @@
     <br>
 	<div>
 	<h5>이번 매치의 게시판</h5>
-	<div>
-	리스트 ${info.id }
+	
+	<div id="commentlist">
+
+
+	리스트 
+
 	</div>
-    <form id="commnet-form">
-    
+	
+	
+	
+    <form id="comment-form">
+    <c:set var="info" value="${ sessionScope.info }"/>
     <textarea rows="3" cols="50" id="content" name="content"></textarea>
-    <input type="hidden" id="userId" name="userId" value=${info.id }>
     
-    <input type="hidden" id="matchId" name="matchId" value=${match1 }>
+    <input type="hidden" id="userId" name="userId" value="${info.id }">
+    <input type="hidden" id="matchId" name="matchId" value="${match1 }">
+    <input type="hidden" id="writer" name="writer" value="${info.randomName }">
   	 ${info.randomName }
-    <input type="hidden" id="writer" name="writer" value=${info.randomName }>
     
     <br>
-    <input type="submit" id="comment-btn" value="등록"  class="btn">
+    <button id="comment-btn" class="btn">등록</button>
     </form>
  	</div>
  	
