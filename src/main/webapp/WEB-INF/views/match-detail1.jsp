@@ -46,16 +46,16 @@
 	
 	
     <form id="comment-form">
-    <c:set var="info" value="${ sessionScope.info }"/>
-    <textarea rows="3" cols="50" id="content" name="content"></textarea>
-    
-    <input type="hidden" id="userId" name="userId" value="${info.id }">
-    <input type="hidden" id="matchId" name="matchId" value="${match1 }">
-    <input type="hidden" id="writer" name="writer" value="${info.randomName }">
-  	 ${info.randomName }
-    
-    <br>
-    <button id="comment-btn" class="btn">등록</button>
+	    <c:set var="info" value="${ sessionScope.info }"/>
+	    <textarea rows="3" cols="50" id="content" name="content"></textarea>
+	    
+	    <input type="hidden" id="userId" name="userId" value="${info.id }">
+	    <input type="hidden" id="matchId" name="matchId" value="${match1 }">
+	    <input type="hidden" id="writer" name="writer" value="${info.randomName }">
+	  	 ${info.randomName }
+	    
+	    <br>
+	    <button id="comment-btn" class="btn">등록</button>
     </form>
  	</div>
  	

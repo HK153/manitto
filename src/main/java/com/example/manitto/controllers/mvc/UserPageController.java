@@ -17,6 +17,7 @@ import java.util.Optional;
 import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -66,7 +67,7 @@ public class UserPageController {
     }
     
     @GetMapping("/match-detail1")
-    public ModelAndView matchDetail1(HttpSession session) {
+    public ModelAndView matchDetail1( HttpSession session) {
     		ModelAndView mv = new ModelAndView();
     		User.InfoDto info = (InfoDto) session.getAttribute("info");
     		List<Match> dto = matchService.getMatchListActive();

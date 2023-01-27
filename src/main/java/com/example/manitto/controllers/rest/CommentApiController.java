@@ -6,7 +6,10 @@ import com.example.manitto.services.UserMatchService;
 
 import lombok.RequiredArgsConstructor;
 
+import java.util.List;
+
 import org.springframework.http.HttpRequest;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -26,4 +29,12 @@ public class CommentApiController {
     public void createComment(Comment.CreateDto createDto)  {
     		commentService.createComment(createDto);
     }
+    
+//    commentService.createComment(createDto);
+//	
+
+//	ModelAndView mv = new ModelAndView();
+//	
+//	mv.addObject("commentlist", list);
+//	return mv;
 }
