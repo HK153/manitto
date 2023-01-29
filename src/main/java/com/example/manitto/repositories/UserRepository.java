@@ -47,4 +47,8 @@ public interface UserRepository {
     List<User> getUserListHavaRole();
 
     int getTotalUserCount();
+
+    List<User> getAllUserLimits(int limit);
+
+    int getTotalUser();
 }

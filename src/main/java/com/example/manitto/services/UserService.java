@@ -14,6 +14,7 @@ import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -118,5 +119,15 @@ public class UserService {
             );
             return loginSessionManager.getLoginUserInfo();
         }
+    }
+
+    public List<User.InfoDto> getAllUserLimits(int limit) {
+        List<User.InfoDto> list = new ArrayList<>();
+        userRepository.getAllUserLimits(limit).forEach(user  -> list.add(user.toInfoDto()));
+        return list;
+    }
+
+    public int getTotalUser() {
+        return userRepository.getTotalUser();
     }
 }

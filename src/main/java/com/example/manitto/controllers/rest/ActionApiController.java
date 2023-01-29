@@ -5,6 +5,7 @@ import com.example.manitto.services.ActionService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +24,10 @@ public class ActionApiController {
     @GetMapping("/mission-list")
     public List<Action.InfoDto> getMissionList(){
         return actionService.getMissionList();
+    }
+    @PostMapping("/pmrreg")
+    public void registeraction(Action.CreateDto dto) {
+        actionService.createAction(dto);
     }
 
 }

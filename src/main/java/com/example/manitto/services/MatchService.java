@@ -20,4 +20,7 @@ public class MatchService {
     public List<Match> getMatchListActive(){
     		return matchRepository.getMatchListActive();
     }
+    public List<Match> getMatchListWaiting(){
+        return matchRepository.getMatchListWaiting();
+    }
 }

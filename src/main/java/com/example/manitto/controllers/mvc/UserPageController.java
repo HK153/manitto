@@ -7,12 +7,14 @@ import com.example.manitto.dtos.User.InfoDto;
 import com.example.manitto.dtos.UserMatch;
 import com.example.manitto.services.MatchService;
 import com.example.manitto.services.UserMatchService;
+import com.example.manitto.services.UserService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
@@ -28,6 +30,7 @@ public class UserPageController {
     private final LoginSessionManager loginSessionManager;
     private final UserMatchService userMatchService;
     private final MatchService matchService;
+    private final UserService userService;
 
     @GetMapping("/login")
     public String loginPage() {
@@ -79,8 +82,25 @@ public class UserPageController {
     }
 
     @GetMapping("/pmrreg")
-    public String pmrregPage() {
-        return "pmrreg";
+    public ModelAndView pmrregPage() {
+        //waiting id 값
+        List<Match> matchList = matchService.getMatchListWaiting();
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("matchList", matchList);
+        mv.setViewName("admin/pmrreg");
+        return mv;
+    }
+
+    @RequestMapping("/userrev")
+    public ModelAndView getAllUserLimits(@RequestParam(value="page", required=false, defaultValue="1") int page) {
+        int totalboard = userService.getTotalUser();
+        int limit = (page-1)*5;
+        List<User.InfoDto> userList = userService.getAllUserLimits(limit);
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("totalboard", totalboard);
+        mv.addObject("list",userList);
+        mv.setViewName("/userrev");
+        return mv;
     }
 
 

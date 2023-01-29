@@ -84,4 +84,10 @@
         select count(*)
         from user;
     </select>
+    <select id="getTotalUser" resultType="int" >
+        select count(*) from user
+    </select>
+    <select id="getAllUserLimits" parameterType="int" resultType="userDto">
+        select * from user order by binary(name) desc limit #{limit},5
+    </select>
 </mapper>

@@ -29,4 +29,7 @@ public class ActionService {
 
         return actionRepository.getActionListByMatchIdAndType(extendedDto.getMatchId(),Constants.TYPE_MISSION).stream().map(action -> action.toInfoDto()).toList();
     }
+    public void createAction(Action.CreateDto dto) {
+        actionRepository.createAction(dto);
+    }
 }

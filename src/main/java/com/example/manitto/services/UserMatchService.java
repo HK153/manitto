@@ -21,10 +21,15 @@ public class UserMatchService {
     private final LoginSessionManager loginSessionManager;
 
     public UserMatch.ExtendedDto getUserMatchBySession() {
-        long sessionId = loginSessionManager.getLoginUserInfo().getId();
-        UserMatch.ExtendedDto userMatchBySession = userMatchRepository.getExtendedUserMatchListByUserId(Constants.STATUS_ACTIVE, sessionId).stream().findFirst().get();
-        return userMatchRepository.getExtendedUserMatchListByMatchId(Constants.STATUS_ACTIVE,userMatchBySession.getMatchId()).stream()
-                .filter(extendedDto -> extendedDto.getUserId() != sessionId).findFirst().get();
+        try{
+            long sessionId = loginSessionManager.getLoginUserInfo().getId();
+            UserMatch.ExtendedDto userMatchBySession = userMatchRepository.getExtendedUserMatchListByUserId(Constants.STATUS_ACTIVE, sessionId).stream().findFirst().get();
+            return userMatchRepository.getExtendedUserMatchListByMatchId(Constants.STATUS_ACTIVE,userMatchBySession.getMatchId()).stream()
+                    .filter(extendedDto -> extendedDto.getUserId() != sessionId).findFirst().get();
+        } catch (RuntimeException e){
+            return null;
+        }
+
     }
 
     public List<UserMatch.ExtendedDto> getUserMatchByMatchId(long matchId) {
